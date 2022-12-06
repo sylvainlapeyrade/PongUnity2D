@@ -10,12 +10,19 @@ public class Paddle : MonoBehaviour
     private float movement;
     public bool isPlayer1;
 
+    private Vector3 startPosition;
+
+    void Start()
+    {
+        startPosition = transform.position;
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (isPlayer1)
         {
-            movement = Input.GetAxis("Vertical1");
+            movement = Input.GetAxis("Vertical");
         }
         else
         {
@@ -23,5 +30,11 @@ public class Paddle : MonoBehaviour
         }
 
         rigidBody2D.velocity = new Vector2(0, movement) * speed;
+    }
+
+    public void ResetPosition()
+    {
+        transform.position = startPosition;
+        rigidBody2D.velocity = Vector2.zero;
     }
 }
